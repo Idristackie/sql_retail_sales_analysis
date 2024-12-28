@@ -19,7 +19,7 @@ CREATE TABLE retail_sales
 --Examining the data
 SELECT * 
 FROM retail_sales
-LIMIT 10
+LIMIT 10;
 
 
 -- checking for null values
@@ -33,7 +33,7 @@ WHERE transactions_id IS NULL
 	OR category IS NULL
 	OR quantity IS NULL
 	OR cogs IS NULL
-	OR total_sale IS NULL
+	OR total_sale IS NULL;
  
 -- Handling null values 
 -- You can either delete the rows with null values or you can replace it
@@ -46,20 +46,20 @@ WHERE transactions_id IS NULL
 	OR category IS NULL
 	OR quantity IS NULL
 	OR cogs IS NULL
-	OR total_sale IS NULL
+	OR total_sale IS NULL;
 
 
 -- Data Exploration
 
 -- How many sales do you have?
 SELECT COUNT(*)
-FROM retail_sales
+FROM retail_sales;
 -- How many unique customers do we have?
 SELECT COUNT( DISTINCT customer_id)
-FROM retail_sales
+FROM retail_sales;
 -- How many unique category do we have?
 SELECT COUNT( DISTINCT category)
-FROM retail_sales
+FROM retail_sales;
 
 -- Data Analysis & Business Key Problems and Answers
 
@@ -77,7 +77,7 @@ FROM retail_sales
 WHERE category = 'Clothing' 
 	AND TO_CHAR(sale_date, 'yyyy-mm') = '2022-11'
 	AND quantity >= 4
-GROUP BY 1
+GROUP BY 1;
 
 
 -- Write a SQL query to calculate the total sales(total_sales) for each category
@@ -89,17 +89,17 @@ GROUP BY category;
 SELECT category, ROUND(AVG(age), 2)AverageAge
 FROM retail_sales 
 WHERE category = 'Beauty'
-GROUP BY 1
+GROUP BY 1;
 -- Write an SQL query to find all transactions where the total sale is greater than 1000
 SELECT *
 FROM retail_sales
-WHERE total_sale > 1000
+WHERE total_sale > 1000;
 
 -- Write an SQL query to find the total number of transactions( transaction_id) made by each gender in each category
 SELECT category, gender, COUNT(transactions_id)
 FROM retail_sales
 GROUP BY 1,2
-ORDER BY 1
+ORDER BY 1;
 
 --Write a SQL query to calculate the average sale for each month, find out the best selling month in each year
 SELECT *
@@ -112,7 +112,7 @@ SELECT EXTRACT(YEAR FROM sale_date) as year,
 FROM retail_sales
 GROUP BY 1,2
 ) as t1
-WHERE rank = 1
+WHERE rank = 1;
 
 
 -- Write an SQL query to find the top 5 customers based on the highest total sales
@@ -121,7 +121,7 @@ SELECT customer_id, SUM(total_sale) total_sale
 FROM retail_sales
 GROUP BY customer_id
 ORDER BY 2 DESC
-LIMIT 5
+LIMIT 5;
 
 
 -- Write an SQL query to find the number of unique customers based on who purchased items from each category
@@ -129,7 +129,7 @@ LIMIT 5
 
 SELECT category, COUNT(DISTINCT customer_id) unique_cs
 FROM retail_sales
-GROUP BY 1
+GROUP BY 1;
 
 
 -- Write an SQL query to create each shift and number of orders 
@@ -149,6 +149,6 @@ FROM retail_sales
 SELECT shift, COUNT(*) total_orders
 FROM hourly_sale
 GROUP BY shift
-ORDER BY total_orders DESC
+ORDER BY total_orders DESC;
 
 
